@@ -1,0 +1,14 @@
+<svg height="54px" version="1.1" viewBox="0 0 60 54" width="60px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title></title>
+    <desc></desc>
+    <defs></defs>
+    <g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1">
+        <g fill-rule="nonzero" id="026---Wallet">
+            <g id="Icons" transform="translate(1.000000, 0.000000)">
+                <rect fill="#F96A59" height="42" id="Rectangle-path" rx="4" width="58" x="0" y="11"></rect>
+                <rect fill="#FFACAD" height="30" id="Rectangle-path" width="58" x="0" y="17"></rect>
+                <path d="M5,11 L45.874,1.008 C46.9451425,0.746015188 48.0769244,0.937844271 49.0019131,1.53815929 C49.9269018,2.13847431 50.5630355,3.09401741 50.76,4.179 L52,11 L5,11 Z" fill="#000000" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
