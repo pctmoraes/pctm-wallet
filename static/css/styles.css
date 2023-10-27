@@ -1,3 +1,4 @@
+
 html {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   color: azure;
@@ -77,9 +78,9 @@ body {
   border: none;
   font-size: 16px;
   font-weight: bold;
-  width: 40px; /* Set your desired button size */
-  height: 40px; /* Set your desired button size */
-  border-radius: 50%; /* This makes it a circle */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   color: rgb(0, 0, 0);
   cursor: pointer;
 }
@@ -126,9 +127,8 @@ body {
 }
 
 .card__remove_button {
-  float: right; /* Float the button to the right */
-  margin-top: 10px; /* Add some margin to separate it from the content */
-  /* Add more styles as needed */
+  float: right;
+  margin-top: 10px;
 }
 
 h4 {
