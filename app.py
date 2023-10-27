@@ -33,7 +33,6 @@ def create_app():
                     return render_template("add_card.html", card=card)
                 else:
                     card_list.append(card)
-                    print('\n\n', card_list)
                     return render_template("home.html",card_list=card_list)
     
     return app
