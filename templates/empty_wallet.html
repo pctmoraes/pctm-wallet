@@ -8,9 +8,9 @@
         <img src="/static/sad_face.svg" alt="Sad face" />
     </p>
 </article>
-<!-- [get_form -> add card form] -->
-<form class="add_card_form" method="POST">
-    <input type="hidden" name="form_class" value="get_card_form" />
-    <button type="submit" class="form__get">Adicionar cartão</button>
+<form class="get_card_form" method="GET" action="/card-form">
+    <button type="submit" class="form__get">
+        Adicionar cartão
+    </button>
 </form>
 {% endblock %}

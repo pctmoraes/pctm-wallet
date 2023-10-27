@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form class="form" method="POST">
-        <input type="hidden" name="form_class" value="get_card_form" />
+    <form class="form" method="GET" action="/card-form">
         <button type="submit" class="form__request">+</button>
     </form>
     {% for card in card_list %}
