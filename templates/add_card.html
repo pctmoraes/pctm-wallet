@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Informações do cartão</h2>
+    <form class="form" method="POST">
+    <p class="form__input">
+        <label for="entry" class="form__label">Nome impresso no cartão:</label>
+        <input name="card_name" id="entry" class="form__input"></input>
+    </p>
+    <p class="form__input">
+        <label for="entry" class="form__label">Número do cartão:</label>
+        <input name="card_number" id="entry" class="form__input"></input>
+    </p>
+    <p class="form__input">
+        <label for="entry" class="form__label">Data de validade:</label>
+        <input name="card_valid_thru" id="entry" class="form__input"></input>
+    </p>
+    <p class="form__input">
+        <label for="entry" class="form__label">CCV:</label>
+        <input name="card_ccv" id="entry" class="form__input"></input>
+    </p>
+    <p class="form__input">
+        <label for="entry" class="form__label">Cartão principal:</label>
+        <input type="checkbox" name="is_card_default" id="entry" class="form__checkbox"></input>
+    </p>
+    <input type="hidden" name="form_class" value="insert_card_form" />
+    <button type="submit" class="form__submit">Adicionar cartão</button>
+    {% if card and card.validation_messages %}
+        <div class="validation-messages">
+            <ul>
+                {% for message in card.validation_messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    </form>
+{% endblock %}
