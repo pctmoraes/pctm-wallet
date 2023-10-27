@@ -32,7 +32,15 @@ def create_app():
                 if card.validation_messages:
                     return render_template("add_card.html", card=card)
                 else:
-                    card_list.append(card)
+                    if card.is_card_default:
+                        for c in card_list:
+                            if c.is_card_default:
+                                c.is_card_default = False
+                        
+                        card_list.insert(0,card)
+                    else:
+                        card_list.append(card)
+
                     return render_template("home.html",card_list=card_list)
     
     return app

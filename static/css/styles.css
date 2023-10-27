@@ -120,6 +120,15 @@ body {
   line-height: 150%;
 }
 
+.card__content_star {
+  font-size: 20px;
+}
+
+.card__remove_button {
+  float: right; /* Float the button to the right */
+  margin-top: 10px; /* Add some margin to separate it from the content */
+  /* Add more styles as needed */
+}
 
 h4 {
   color: #929292;

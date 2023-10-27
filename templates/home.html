@@ -2,8 +2,8 @@
 
 {% block content %}
     <form class="form" method="POST">
-    <input type="hidden" name="form_class" value="get_card_form" />
-    <button type="submit" class="form__request">+</button>
+        <input type="hidden" name="form_class" value="get_card_form" />
+        <button type="submit" class="form__request">+</button>
     </form>
     {% for card in card_list %}
         <div class="div__card_list">
@@ -13,7 +13,7 @@
                 <p>{{ card.card_number }}</p>
                 <p>{{ card.card_brand }}</p>
                 {% if card.is_card_default %}
-                    <p>Cartão principal</p>
+                    <p class="card__content_star">&#9733;</p>
                 {% endif %}
                 </p>
             </article>

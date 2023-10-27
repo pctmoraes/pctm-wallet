@@ -27,6 +27,7 @@ class Card(object):
         if len(card_valid_thru) == 0:
             self.validation_messages.append("A data de validade do cartão não pode ser vazia.")
         
+
         if card_ccv.isnumeric() == False:
             self.validation_messages.append("O CVV do cartão não é válido.")
             card_ccv = 0
