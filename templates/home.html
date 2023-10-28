@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form class="form" method="GET" action="{{ url_for('card_form') }}">
+    <form class="form" method="GET" action="{{ url_for('wallet.card_form') }}">
         <button type="submit" class="form__request">+</button>
     </form>
     {% for card in card_list %}
