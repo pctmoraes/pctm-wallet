@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from models.card import Card
 
 def create_app():
@@ -12,14 +12,14 @@ def create_app():
     # Here would be the cards fetched from the DB
     card_list = list()
 
-    @app.route("/", methods=["GET"])
+    @app.route("/")
     def home():
         if card_list:
             return render_template(home_html, card_list=card_list)
         else:
             return render_template(empty_wallet_html)
     
-    @app.route("/card-form", methods=["GET"])
+    @app.route("/card-form")
     def card_form():
         return render_template(card_form_html, card=None)
    
