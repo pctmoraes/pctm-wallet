@@ -13,6 +13,7 @@ card_form_html = 'card_form.html'
 empty_wallet_html = 'empty_wallet.html'
 card_list = list()
 
+
 @pages.route("/")
 def home():
     if card_list:
@@ -20,9 +21,11 @@ def home():
     else:
         return render_template(empty_wallet_html)
 
+
 @pages.route("/card-form")
 def card_form():
     return render_template(card_form_html, card=None)
+
 
 @pages.route("/add-card", methods=["POST"])
 def add_card():
