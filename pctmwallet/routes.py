@@ -9,15 +9,27 @@ pages = Blueprint(
 )
 
 home_html = 'home.html'
+wallet_html = 'wallet.html'
+signup_html = 'signup.html'
 card_form_html = 'card_form.html'
 empty_wallet_html = 'empty_wallet.html'
 card_list = list()
 
-
-@pages.route("/")
+# aqui é onde aparece campos para entrar na plataforma
+@pages.route("/", methods=["GET", "POST"])
 def home():
+    return render_template(home_html)
+
+
+@pages.route("/signup", methods=["GET", "POST"])
+def signup():
+    return render_template(signup_html)
+
+
+@pages.route("/wallet", methods=["GET", "POST"])
+def wallet():
     if card_list:
-        return render_template(home_html, card_list=card_list)
+        return render_template(wallet_html, card_list=card_list)
     else:
         return render_template(empty_wallet_html)
 
@@ -49,4 +61,4 @@ def add_card():
         else:
             card_list.append(card)
 
-        return render_template(home_html, card_list=card_list)
+        return render_template(wallet_html, card_list=card_list)

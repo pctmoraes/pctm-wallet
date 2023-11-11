@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Login</h3>
-<form class="form" method="POST" action="{{ url_for('wallet.wallet') }}">
+<h3>Criar conta</h3>
+<form class="form" method="POST" action="{{ url_for('wallet.home') }}">
     <p class="form__input">
         <label for="entry" class="form__label">Email:</label>
         <input name="user_email" id="entry" class="form__input"></input>
@@ -11,11 +11,6 @@
         <label for="entry" class="form__label">Senha:</label>
         <input name="user_password" type="password" id="entry" class="form__input"></input>
     </p>
-    <button type="submit" class="form__get">Entrar</button>
+    <button type="submit" class="form__get">Criar conta</button>
 </form>
-<article class="create__account">
-    <p class="create__account_text"><br>
-        Ainda não é cadastrado? <a href="{{ url_for('wallet.signup') }}">Crie uma conta</a>
-    </p>
-</article>
 {% endblock %}

@@ -131,7 +131,14 @@ body {
   margin-top: 10px;
 }
 
+h3 {
+  color: #929292;
+  font-size: 24px;
+  text-align: center;
+}
+
 h4 {
   color: #929292;
   font-size: 20px;
+  text-align: center;
 }

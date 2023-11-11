@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form class="form" method="GET" action="{{ url_for('wallet.card_form') }}">
+        <button type="submit" class="form__request">+</button>
+    </form>
+    {% for card in card_list %}
+        <div class="div__card_list">
+            <article class="article__div__card_list">
+                <p class="card__content">
+                <p>{{ card.card_name }}</p>
+                <p>{{ card.card_number }}</p>
+                <p>{{ card.card_brand }}</p>
+                {% if card.is_card_default %}
+                    <p class="card__content_star">&#9733;</p>
+                {% endif %}
+                </p>
+            </article>
+        </div>
+    {% endfor %}
+{% endblock %}
