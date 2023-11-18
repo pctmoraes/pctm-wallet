@@ -1,4 +1,13 @@
-from flask import Blueprint, render_template, request
+from flask import (
+    Blueprint,
+    redirect, 
+    render_template, 
+    request,
+    flash,
+    session,
+    url_for
+)
+from passlib.hash import pbkdf2_sha256
 from models.card import Card
 
 pages = Blueprint(
@@ -15,14 +24,38 @@ card_form_html = 'card_form.html'
 empty_wallet_html = 'empty_wallet.html'
 card_list = list()
 
-# aqui é onde aparece campos para entrar na plataforma
+
+users = {}
+
 @pages.route("/", methods=["GET", "POST"])
 def home():
+    if request.method == 'POST':
+        email = request.form.get('user_email')
+        password = request.form.get('user_password')
+        
+        if users.get(email):
+            if pbkdf2_sha256.verify(password, users.get(email)):
+                session['email'] = email
+                return redirect(url_for('wallet.wallet'))
+            
+            flash('Email ou senha inválidos.')
+        else:
+            flash('Usuário não cadastrado')
+    
     return render_template(home_html)
 
 
 @pages.route("/signup", methods=["GET", "POST"])
 def signup():
+    if request.method == 'POST':
+        email = request.form.get('user_email')
+        password = request.form.get('user_password')
+
+        users[email] = pbkdf2_sha256.hash(password)
+
+        flash('Usuário criado com sucesso.')
+        return redirect(url_for('wallet.home'))
+
     return render_template(signup_html)
 
 

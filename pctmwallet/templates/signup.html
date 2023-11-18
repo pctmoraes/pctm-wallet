@@ -2,7 +2,7 @@
 
 {% block content %}
 <h3>Criar conta</h3>
-<form class="form" method="POST" action="{{ url_for('wallet.home') }}">
+<form class="form" method="POST">
     <p class="form__input">
         <label for="entry" class="form__label">Email:</label>
         <input name="user_email" id="entry" class="form__input"></input>
@@ -13,4 +13,7 @@
     </p>
     <button type="submit" class="form__get">Criar conta</button>
 </form>
+<p>Já possui uma conta?
+    <a href="{{ url_for('wallet.home') }}">Entrar</a>
+</p>
 {% endblock %}
