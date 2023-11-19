@@ -9,7 +9,6 @@ from flask import (
 )
 from passlib.hash import pbkdf2_sha256
 from pctmwallet.models.card import Card
-from pctmwallet.models.user_card import UserCard
 
 pages = Blueprint(
     'wallet', 
