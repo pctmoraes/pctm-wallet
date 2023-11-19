@@ -1,6 +1,6 @@
 import secrets
 from flask import Flask
-from routes import pages
+from pctmwallet.routes import pages
 
 def create_app():
     app = Flask(__name__)
