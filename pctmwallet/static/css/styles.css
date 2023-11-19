@@ -146,3 +146,7 @@ h4 {
   font-size: 20px;
   text-align: center;
 }
+
+a {
+  color: var(--grey-color);
+}
