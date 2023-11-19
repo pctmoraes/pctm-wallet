@@ -60,8 +60,14 @@ def signup():
 
 @pages.route("/wallet", methods=["GET", "POST"])
 def wallet():
+    user_card_list = list()
     if card_list:
-        return render_template(wallet_html, card_list=card_list)
+        for c in card_list:
+            if c.user_email == session['email']:
+                user_card_list.append(c)
+        
+    if user_card_list:    
+        return render_template(wallet_html, card_list=user_card_list)
     else:
         return render_template(empty_wallet_html)
 
