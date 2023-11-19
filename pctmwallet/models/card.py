@@ -6,7 +6,8 @@ class Card(object):
         card_number: str,
         card_valid_thru: str,
         card_ccv: int,
-        is_card_default: bool
+        is_card_default: bool,
+        user_email: str
     ) -> None:
         self.validation_messages = list()
 
@@ -38,6 +39,7 @@ class Card(object):
         self.card_ccv = int(card_ccv)
         self.is_card_default = True if is_card_default else False
         self.card_brand = self.get_card_brand()
+        self.user_email = user_email
     
     def get_card_brand(self):
         if self.card_number[:2] == '22':

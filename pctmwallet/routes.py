@@ -9,6 +9,7 @@ from flask import (
 )
 from passlib.hash import pbkdf2_sha256
 from pctmwallet.models.card import Card
+from pctmwallet.models.user_card import UserCard
 
 pages = Blueprint(
     'wallet', 
@@ -22,10 +23,9 @@ wallet_html = 'wallet.html'
 signup_html = 'signup.html'
 card_form_html = 'card_form.html'
 empty_wallet_html = 'empty_wallet.html'
+
 card_list = list()
-
-
-users = {}
+user_list = dict()
 
 @pages.route("/", methods=["GET", "POST"])
 def home():
@@ -33,8 +33,8 @@ def home():
         email = request.form.get('user_email')
         password = request.form.get('user_password')
         
-        if users.get(email):
-            if pbkdf2_sha256.verify(password, users.get(email)):
+        if user_list.get(email):
+            if pbkdf2_sha256.verify(password, user_list.get(email)):
                 session['email'] = email
                 return redirect(url_for('wallet.wallet'))
             
@@ -51,7 +51,7 @@ def signup():
         email = request.form.get('user_email')
         password = request.form.get('user_password')
 
-        users[email] = pbkdf2_sha256.hash(password)
+        user_list[email] = pbkdf2_sha256.hash(password)
 
         flash('Usuário criado com sucesso.')
         return redirect(url_for('wallet.home'))
@@ -79,7 +79,8 @@ def add_card():
         card_number = request.form.get('card_number'),
         card_valid_thru = request.form.get('card_valid_thru'),
         card_ccv = request.form.get('card_ccv'),
-        is_card_default = request.form.get('is_card_default')
+        is_card_default = request.form.get('is_card_default'),
+        user_email = session['email']
     )
 
     if card.validation_messages:
@@ -94,7 +95,12 @@ def add_card():
         else:
             card_list.append(card)
 
-        return render_template(wallet_html, card_list=card_list)
+        user_card_list = list()
+        for c in card_list:
+            if c.user_email == session['email']:
+                user_card_list.append(c)
+
+        return render_template(wallet_html, card_list=user_card_list)
 
 @pages.route('/logout', methods=["POST"])
 def logout():
