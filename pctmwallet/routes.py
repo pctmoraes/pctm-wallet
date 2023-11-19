@@ -95,3 +95,9 @@ def add_card():
             card_list.append(card)
 
         return render_template(wallet_html, card_list=card_list)
+
+@pages.route('/logout', methods=["POST"])
+def logout():
+    session.clear()
+
+    return redirect(url_for('wallet.home'))

@@ -11,6 +11,13 @@
     <div class="navbar__brand">
       <img class="navbar__logo" src="/static/logo.svg" alt="The Microblog logo" />pctm Wallet
     </div>
+    <div>
+      {% if show_logout_button %}
+        <form method="POST" action="{{ url_for('wallet.logout') }}">
+          <button type="submit" class="form__submit">Logout</button>
+        </form>
+      {% endif %}
+    </div>
   </header>
     <main class="main">
     {% for message in get_flashed_messages() %}
