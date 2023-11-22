@@ -25,7 +25,6 @@ empty_wallet_html = 'empty_wallet.html'
 
 card_list = list()
 user_list = dict()
-_session = dict()
 
 @pages.route("/", methods=["GET", "POST"])
 def home():
@@ -35,8 +34,7 @@ def home():
         
         if user_list.get(email):
             if pbkdf2_sha256.verify(password, user_list.get(email)):
-                # session['email'] = email
-                _session['email'] = email
+                session['email'] = email
                 return redirect(url_for('wallet.wallet'))
             
             flash('Email ou senha inválidos.')
@@ -111,7 +109,6 @@ def add_card():
 
 @pages.route('/logout', methods=["POST"])
 def logout():
-    # session.clear()
-    _session.clear()
+    session.clear()
 
     return redirect(url_for('wallet.home'))
