@@ -11,7 +11,6 @@ from flask import (
 from passlib.hash import pbkdf2_sha256
 
 from pctmwallet.models.card import Card
-# from models.card import Card
 
 pages = Blueprint(
     'wallet',
@@ -33,7 +32,8 @@ def home():
         email = request.form.get('user_email')
         password = request.form.get('user_password')
 
-        if user := current_app.db.user.find_one({"email": email}):
+        user = current_app.db.user.find_one({"email": email})
+        if user:
             if pbkdf2_sha256.verify(password, user.get("password")):
                 session['email'] = email
                 return redirect(url_for('wallet.wallet'))
