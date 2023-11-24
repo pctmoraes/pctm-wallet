@@ -98,14 +98,14 @@ def add_card():
     if card.validation_messages:
         return render_template(card_form_html, card=card)
     else:
-        # if card.is_card_default:
-        #     for c in card_list:
-        #         if c.is_card_default:
-        #             c.is_card_default = False
+        if card.is_card_default:
+            for c in card_list:
+                if c.is_card_default:
+                    c.is_card_default = False
 
-        #     card_list.insert(0,card)
-        # else:
-        #     card_list.append(card)
+            card_list.insert(0,card)
+        else:
+            card_list.append(card)
 
         # user_card_list = list()
         # for c in card_list:
