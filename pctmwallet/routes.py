@@ -40,7 +40,7 @@ def home():
         #         return redirect(url_for('wallet.wallet'))
 
         #     flash('Email ou senha inválidos.')
-        if user_list.get(email):
+        if email and password:
             session['email'] = email
             return redirect(url_for('wallet.wallet'))
         else:
