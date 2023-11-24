@@ -98,21 +98,21 @@ def add_card():
     if card.validation_messages:
         return render_template(card_form_html, card=card)
     else:
-        if card.is_card_default:
-            for c in card_list:
-                if c.is_card_default:
-                    c.is_card_default = False
+        # if card.is_card_default:
+        #     for c in card_list:
+        #         if c.is_card_default:
+        #             c.is_card_default = False
 
-            card_list.insert(0,card)
-        else:
-            card_list.append(card)
+        #     card_list.insert(0,card)
+        # else:
+        #     card_list.append(card)
 
-        user_card_list = list()
-        for c in card_list:
-            if c.user_email == session['email']:
-                user_card_list.append(c)
+        # user_card_list = list()
+        # for c in card_list:
+        #     if c.user_email == session['email']:
+        #         user_card_list.append(c)
 
-        return render_template(wallet_html, card_list=user_card_list)
+        return render_template(wallet_html, card_list=card_list)
 
 @pages.route('/logout', methods=["POST"])
 def logout():
