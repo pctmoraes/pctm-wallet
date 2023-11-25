@@ -5,8 +5,7 @@ from flask import (
     request,
     flash,
     session,
-    url_for,
-    current_app
+    url_for
 )
 from passlib.hash import pbkdf2_sha256
 
@@ -25,6 +24,8 @@ signup_html = 'signup.html'
 card_form_html = 'card_form.html'
 empty_wallet_html = 'empty_wallet.html'
 
+card_list = list()
+user_list = dict()
 
 @pages.route("/", methods=["GET", "POST"])
 def home():
@@ -32,18 +33,16 @@ def home():
         email = request.form.get('user_email')
         password = request.form.get('user_password')
 
-        if current_app.users.get(email):
-            user_pass = current_app.users.get(email)
-            
-            if password == user_pass:
-                session['email'] = email
+        # if user_list.get(email):
+        #     if pbkdf2_sha256.verify(password, user_list.get(email)):
+        #         session['email'] = email
                 
-                return redirect(url_for('wallet.wallet'))
+        #         return redirect(url_for('wallet.wallet'))
 
-            flash('Email ou senha inválidos.')
-        # if email and password:
-        #     session['email'] = email
-        #     return redirect(url_for('wallet.wallet'))
+        #     flash('Email ou senha inválidos.')
+        if email and password:
+            session['email'] = email
+            return redirect(url_for('wallet.wallet'))
         else:
             flash('Usuário não cadastrado')
     
@@ -56,8 +55,8 @@ def signup():
         email = request.form.get('user_email')
         password = request.form.get('user_password')
 
-        # users[email] = pbkdf2_sha256.hash(password)
-        current_app.users[email] = password
+        # user_list[email] = pbkdf2_sha256.hash(password)
+        user_list[email] = password
 
         flash('Usuário criado com sucesso.')
         return redirect(url_for('wallet.home'))
@@ -69,8 +68,8 @@ def signup():
 def wallet():
     user_card_list = list()
 
-    if current_app.card_list:
-        for c in current_app.card_list:
+    if card_list:
+        for c in card_list:
             if c.user_email == session['email']:
                 user_card_list.append(c)
 
@@ -100,20 +99,20 @@ def add_card():
         return render_template(card_form_html, card=card)
     else:
         if card.is_card_default:
-            for c in current_app.card_list:
+            for c in card_list:
                 if c.is_card_default:
                     c.is_card_default = False
 
-            current_app.card_list.insert(0,card)
+            card_list.insert(0,card)
         else:
-            current_app.card_list.append(card)
+            card_list.append(card)
 
-        user_card_list = list()
-        for c in current_app.card_list:
-            if c.user_email == session['email']:
-                user_card_list.append(c)
+        # user_card_list = list()
+        # for c in card_list:
+        #     if c.user_email == session['email']:
+        #         user_card_list.append(c)
 
-        return render_template(wallet_html, card_list=user_card_list)
+        return render_template(wallet_html, card_list=card_list)
 
 @pages.route('/logout', methods=["POST"])
 def logout():
