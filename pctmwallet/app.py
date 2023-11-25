@@ -7,4 +7,7 @@ def create_app():
 
     app.config['SECRET_KEY'] = 'my-secret-key'
 
+    app.card_list = []
+    app.users = {}
+
     return app
